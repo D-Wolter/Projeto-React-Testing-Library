@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 
@@ -8,8 +8,6 @@ import App from '../App';
 
 describe('Teste links de navegação: home', () => {
   test('Teste se link de navegação: home é renderizado', () => {
-    // renderWithRouter(<App />)
-
     const { history } = renderWithRouter(<App />);
     const { location: { pathname } } = history;
     expect(pathname).toBe('/');
@@ -21,33 +19,57 @@ describe('Teste links de navegação: home', () => {
 
     userEvent.click(linkHome);
 
-    const titlePokedex = screen.getByRole('heading', {
-      name: /pokédex/i,
+    const home = screen.getByRole('heading', {
+      name: /encountered pokémons/i,
     });
-    expect(titlePokedex).toBeInTheDocument();
+    expect(home).toBeInTheDocument();
   });
   test('Teste links de navegação: About', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { history } = renderWithRouter(<App />);
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/');
 
     const linkAbout = screen.getByRole('link', {
       name: /About/i,
     });
     expect(linkAbout).toBeInTheDocument();
+
+    userEvent.click(linkAbout);
+
+    const about = screen.getByRole('heading', {
+      name: /about pokédex/i,
+    });
+
+    expect(about).toBeInTheDocument();
   });
   test('Teste links de navegação: Favorites', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { history } = renderWithRouter(<App />);
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/');
 
     const linkFavPoks = screen.getByRole('link', {
       name: /Favorite Pokémons/i,
     });
     expect(linkFavPoks).toBeInTheDocument();
+
+    userEvent.click(linkFavPoks);
+
+    const fav = screen.getByRole('heading', {
+      name: /favorite pokémons/i,
+    });
+
+    expect(fav).toBeInTheDocument();
+  });
+  test('renderiza a página não encontrada with renderWithRouter', () => {
+    const { history } = renderWithRouter(<App />);
+
+    act(() => {
+      history.push('/rota-que-não-existe');
+    });
+
+    const notFoundText = screen.getByRole('heading', {
+      name: /page requested not found/i,
+    });
+    expect(notFoundText).toBeInTheDocument();
   });
 });
