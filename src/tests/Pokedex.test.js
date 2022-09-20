@@ -63,4 +63,25 @@ describe('Teste componente Pokemons', () => {
     userEvent.click(clearButton);
     checkNextPokemon(nextPokButton, data);
   });
+  test('Teste se renderiza botoes de filtros', () => {
+    const { history } = renderWithRouter(<App />);
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/');
+
+    const filterButtons = screen.getAllByTestId('pokemon-type-button');
+    const checkFilters = filterButtons.reduce((acum, { innerHTML }) => {
+      if (!acum[innerHTML]) {
+        acum[innerHTML] = 0;
+      } acum[innerHTML] += 1;
+      return acum;
+    }, {});
+
+    const cont = Object.entries(checkFilters);
+    const checkCont = cont.some((e) => e[1] === 1);
+    expect(checkCont).toBeTruthy();
+
+    userEvent.click(filterButtons[0]);
+    const typePok = screen.getByTestId('pokemon-type');
+    expect(typePok.innerHTML).toBe('Electric');
+  });
 });
