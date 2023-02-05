@@ -1,13 +1,62 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+## **`Projeto React Testing Library`** ##
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+## O desenvolvimento
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+Nesse projeto será  escrito testes para uma aplicação React que já está criada e configurada, utilizando Jest e a biblioteca React Testing Library
+
+### O que será realizado:
+
+- Utilizar os seletores (queries) da React-Testing-Library em testes automatizados;
+
+- Simular eventos com a React-Testing-Library em testes automatizados;
+
+- Testar fluxos lógicos assíncronos com a React-Testing-Library;
+
+- Escrever testes que permitam a refatoração da estrutura dos componentes da aplicação sem necessidade de serem alterados;
+
+Testar inputs.
+
+---
+
+## Tecnologia:
+
+Tecnologias aplicadas no projeto
+
+- React
+- RTL
+---
+
+## Entregáveis:
+
+1. Teste o componente `<App.js />`
+
+2. Teste o componente `<About.js />`
+
+3. Teste o componente `<FavoritePokemons.js />`
+
+4. Teste o componente `<NotFound.js />`
+
+5. Teste o componente `<Pokedex.js />`
+
+6. Teste o componente `<Pokemon.js />`
+
+7. Teste o componente `<PokemonDetails.js />`
+
+---
+## Inicialização do projeto
+
+Clone o repositório: 
+
+```
+git clone git@github.com:D-Wolter/Projeto-React-Testing-Library.git
+```
+Instale as dependências do projeto:
+```
+npm install
+```
+
+Para executar os testes:
+
+```
+npm test
+```
